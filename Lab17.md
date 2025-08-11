@@ -49,6 +49,17 @@ class MyDatabase {
     return db.insert('todos', map);
   }
 
+Future<void> insertStaticTodos() async {
+    final db = await initDB(); // already existing getter
+    await db.insert(
+      'todos', // table name
+      {
+        'title': 'Buy groceries again',
+        'description': 'Milk, Bread, Eggs',
+      },
+    );
+  }
+
   Future<int> updateTodo({required int id, String? title, String? des}) async {
     Database db = await initDB();
     Map<String, dynamic> map = {};
