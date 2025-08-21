@@ -1,4 +1,4 @@
-# A-2: rite a flutter code to display a list with different colors with different priority. 
+# A-2: Write a flutter code to display a list with different colors with different priority. 
 ## main.dart
 ### resetDatabase() is used when you want to delete the old database and create a new one (for example, if you added a new column like priority and want the table to be created fresh).
 ```dart
