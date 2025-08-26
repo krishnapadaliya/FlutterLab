@@ -217,9 +217,31 @@ class _TodoListPageState extends State<TodoListPage> {
                       ),
                       IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
-                        onPressed: () async {
-                          await db.deleteTodo(id: todo['id']);
-                          setState(() {});
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Confirm Delete"),
+                                actions: [
+                                  TextButton(
+                                    child: const Text("Cancel"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text("Delete", style: TextStyle(color: Colors.red)),
+                                    onPressed: () async {
+                                      await db.deleteTodo(id: todo['id']);
+                                      Navigator.of(context).pop();
+                                      setState(() {});
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                       ),
                     ],
@@ -246,5 +268,4 @@ class _TodoListPageState extends State<TodoListPage> {
     );
   }
 }
-
 ```
